@@ -33,7 +33,7 @@ export default function WebsiteField({ field, fieldErrors, formId }: Props) {
         name={String(id)}
         id={htmlId}
         placeholder={field?.isRequired ? `${label}*` : `${placeholder}` || ""}
-        className={`form-input[type='url'] font-body w-full rounded-lg text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
+        className={`form-input[type='url'] w-full rounded-lg font-body text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
         required={isRequired || false}
         value={value}
         onChange={(event) => {

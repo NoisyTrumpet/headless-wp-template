@@ -58,7 +58,7 @@ const NavigationMenu = ({
               className={`z-50 grid h-screen items-center`}
             >
               <m.nav
-                className={`bottom-100 font-heading left-4 z-40 flex flex-col items-center gap-8 text-base md:flex-row md:gap-0`}
+                className={`bottom-100 left-4 z-40 flex flex-col items-center gap-8 font-body text-base md:flex-row md:gap-0`}
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -85,7 +85,7 @@ const NavigationMenu = ({
           )}
         </AnimatePresence>
       </LazyMotion>
-      <nav className="font-heading left-4 hidden flex-col items-center text-base md:relative md:flex md:flex-row">
+      <nav className="left-4 hidden flex-col items-center font-body text-base md:relative md:flex md:flex-row">
         {menuItems.map(({ path, label }) => (
           <Link
             key={path}

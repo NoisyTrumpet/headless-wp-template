@@ -1,7 +1,29 @@
 import * as SELECTORS from "constants/selectors";
-import { Inter } from "@next/font/google";
+import localFont from "@next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const GOOD_DOG = localFont({
+  src: "../../pages/GoodDogNew.woff2",
+});
+
+const LIGURINO = localFont({
+  src: [
+    {
+      path: "../../pages/LigurinoRg-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../pages/LigurinoRg-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../pages/LigurinoRg-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+});
 
 export interface MainProps {
   children: React.ReactNode;
@@ -13,7 +35,7 @@ export default function Main({ children, className, ...props }: MainProps) {
     <main
       id={SELECTORS.MAIN_CONTENT_ID}
       tabIndex={-1}
-      className={`${className} ${inter.className}`}
+      className={`${className} ${GOOD_DOG.className} ${LIGURINO.className}`}
       {...props}
     >
       {children}

@@ -32,7 +32,7 @@ export default function TextAreaField({ field, fieldErrors, formId }: Props) {
         id={htmlId}
         required={Boolean(isRequired)}
         value={value}
-        className={`form-input[type='textarea'] font-body w-full rounded-lg text-gray-500`}
+        className={`form-input[type='textarea'] w-full rounded-lg font-body text-gray-500`}
         placeholder={(isRequired ? `${label}*` : label) ?? ``}
         onChange={(event) => {
           dispatch({
