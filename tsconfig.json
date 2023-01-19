@@ -13,12 +13,65 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": "./",
     "incremental": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@assets": [
+        "/assets"
+      ],
+      "@components": [
+        "/components"
+      ],
+      "@constants": [
+        "/constants"
+      ],
+      "@client" : [
+        "/client"
+      ],
+      "@hooks": [
+        "/hooks"
+      ],
+      "@interfaces": [
+        "/interfaces"
+      ],
+      "@pages": [
+        "/pages"
+      ],
+      "@features": [
+        "/features"
+      ],
+      "@fragments": [
+        "/fragments"
+      ],
+      "@utilities": [
+        "/utilities"
+      ],
+      "@styles": [
+        "/styles"
+      ],
+      "@possibleTypes": [
+        "/possibleTypes.json"
+      ],
+      "@context": [
+        "/context"
+      ],
+      "@providers": [
+        "/providers"
+      ],
+      "@wpTemplates": [
+        "/wp-templates"
+      ],
+      "@faustConfig": [
+        "/faust.config.js"
+      ],
+      "@graphqlTypes": [
+        "/graphql.ts"
+      ],
+      "@lib": [
+        "/lib"
+      ],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/index.js"],
   "exclude": ["node_modules"]
 }

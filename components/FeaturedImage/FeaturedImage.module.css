@@ -1,0 +1,7 @@
+.featured-image img {
+  max-width: 100%;
+}
+
+.featured-image {
+  position: relative;
+}

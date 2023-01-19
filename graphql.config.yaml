@@ -1,0 +1,10 @@
+schema:
+  - https://nt-headless.mysites.io/graphql
+generates:
+  ./graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withRefetchFn: true
