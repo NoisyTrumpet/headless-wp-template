@@ -46,7 +46,7 @@ export default function NumberField({ field, fieldErrors, formId }: Props) {
         pattern="[0-9]*"
         name={String(id)}
         id={htmlId}
-        className={`form-input[type='number'] font-body w-full rounded-lg text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
+        className={`form-input[type='number'] w-full rounded-lg font-body text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
         required={Boolean(isRequired)}
         placeholder={placeholder || isRequired ? `${label}*` : label || ""}
         value={value}

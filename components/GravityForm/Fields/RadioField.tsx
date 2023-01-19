@@ -75,7 +75,7 @@ export default function RadioField({ field, fieldErrors, formId }: Props) {
         );
       })}
       {description ? (
-        <p className="field-description font-body mt-4 text-sm italic text-gray-700">
+        <p className="field-description mt-4 font-body text-sm italic text-gray-700">
           {description}
         </p>
       ) : null}

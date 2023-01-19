@@ -43,7 +43,7 @@ const Form = ({ className, title, content, form }: FormProps) => {
         </h2>
         <Balancer>
           <div
-            className={`text-md font-body my-4 mx-auto max-w-xl text-gray-800`}
+            className={`text-md my-4 mx-auto max-w-xl font-body text-gray-800`}
             dangerouslySetInnerHTML={{ __html: content ?? `` }}
           />
         </Balancer>

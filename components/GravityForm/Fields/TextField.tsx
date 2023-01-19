@@ -45,7 +45,7 @@ export default function TextField({ field, fieldErrors, formId }: Props) {
         type="text"
         name={String(id)}
         id={htmlId}
-        className={`form-input[type='text'] font-body w-full rounded-lg text-gray-700`}
+        className={`form-input[type='text'] w-full rounded-lg font-body text-gray-700`}
         required={Boolean(isRequired)}
         placeholder={placeholder || isRequired ? `${label}*` : label || ""}
         value={value}

@@ -76,7 +76,7 @@ export default function AddressField({ field, fieldErrors, formId }: Props) {
       id={htmlId}
       className={`gfield flex flex-col gap-4 gfield-${type} ${cssClass}`.trim()}
     >
-      <legend className={`font-heading my-4 text-gray-800`}>{label}</legend>
+      <legend className={`my-4 font-heading text-gray-800`}>{label}</legend>
       {inputs?.map((input) => {
         const key = input?.key as keyof AddressFieldInput;
         const inputLabel = input?.label || "";
@@ -97,7 +97,7 @@ export default function AddressField({ field, fieldErrors, formId }: Props) {
                 type="text"
                 name={String(key)}
                 id={`input_${formId}_${id}_${key}`}
-                className={`form-input[type='text'] font-body w-full rounded-lg text-gray-700`}
+                className={`form-input[type='text'] w-full rounded-lg font-body text-gray-700`}
                 placeholder={`${inputLabel}`}
                 autoComplete={AUTOCOMPLETE_ATTRIBUTES[key]}
                 value={addressValues?.[key] ?? "US"}
@@ -121,7 +121,7 @@ export default function AddressField({ field, fieldErrors, formId }: Props) {
               type="text"
               name={String(key)}
               id={`input_${formId}_${id}_${key}`}
-              className={`form-input[type='text'] font-body w-full rounded-lg text-gray-700`}
+              className={`form-input[type='text'] w-full rounded-lg font-body text-gray-700`}
               placeholder={inputLabel}
               autoComplete={AUTOCOMPLETE_ATTRIBUTES[key]}
               value={addressValues?.[key] ?? ""}

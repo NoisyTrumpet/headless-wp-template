@@ -48,7 +48,7 @@ export default function DateField({ field, fieldErrors, formId }: Props) {
         type="date"
         name={String(id)}
         id={htmlId}
-        className={`form-input[type='date'] font-body w-full rounded-lg text-gray-400`}
+        className={`form-input[type='date'] w-full rounded-lg font-body text-gray-400`}
         required={Boolean(isRequired)}
         placeholder={field?.isRequired ? `${label}*` : label || ""}
         value={value}
