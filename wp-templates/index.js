@@ -1,7 +1,7 @@
 // import category from "./category";
 // import tag from "./tag";
 import frontPage from "./front-page";
-// import page from "./page";
+import page from "./page";
 // import single from "./single";
 // import singleCelebrities from "./single-celebrities";
 // // Taxonomies
@@ -13,7 +13,7 @@ export default {
   // category: category,
   // tag,
   "front-page": frontPage,
-  // page,
+  page,
   // // Post types
   // single,
   // "single-celebrities": singleCelebrities,

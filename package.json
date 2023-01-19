@@ -34,7 +34,7 @@
     "react-select": "^5.7.0",
     "react-toastify": "^9.1.1",
     "react-wrap-balancer": "^0.3.0",
-    "stripe": "^11.6.0",
+    "stripe": "^11.7.0",
     "tailwind-merge": "^1.8.1",
     "typescript": "4.9.3"
   },
