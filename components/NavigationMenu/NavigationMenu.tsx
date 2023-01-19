@@ -90,8 +90,8 @@ const NavigationMenu = ({
           <Link
             key={path}
             href={path ?? "/"}
-            className={`mr-5 hover:text-gray-900 ${
-              type === "primary" ? "text-gray-900" : "text-gray-600"
+            className={`mr-5 hover:text-secondary ${
+              type === "primary" ? "text-white" : "text-primary"
             }`}
           >
             {label}

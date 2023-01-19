@@ -45,7 +45,13 @@ export default function Component() {
       logoAlt={logoAlt}
       cta={cta}
     >
-      <h1>{title}</h1>
+      <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
+        <div clasName={`grid text-center h-fit relative w-full`}>
+          <h1 className="text-center text-4xl font-bold">
+            Noisy Trumpet Headless WordPress Starter
+          </h1>
+        </div>
+      </div>
     </Layout>
   );
 }

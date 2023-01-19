@@ -1,6 +1,7 @@
 import { Main } from "features/Main"; // SEO
 import {
   AcfLink,
+  Acf_GoogleMap,
   MediaItem,
   MenuItem,
   PostTypeSeo,
@@ -8,7 +9,7 @@ import {
 } from "graphql";
 import { SEO } from "features/SEO";
 
-import { Header } from "components";
+import { Header, Footer } from "components";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,9 @@ export interface LayoutProps {
   logoWhite: MediaItem;
   seo: PostTypeSeo;
   cta: AcfLink;
+  phoneNumber: AcfLink;
+  address: Acf_GoogleMap;
+  email: AcfLink;
 }
 
 const Layout = ({
@@ -34,6 +38,9 @@ const Layout = ({
   logo,
   logoAlt,
   logoWhite,
+  phoneNumber,
+  address,
+  email,
 }: LayoutProps) => {
   return (
     <>
@@ -45,7 +52,14 @@ const Layout = ({
         cta={cta}
       />
       <Main className={`main`}>{children}</Main>
-      {/* <Footer menuItems={footerMenuItems} /> */}
+      <Footer
+        menuItems={footerMenuItems.nodes}
+        cta={cta}
+        phoneNumber={phoneNumber}
+        logo={logoWhite}
+        address={address}
+        email={email}
+      />
     </>
   );
 };

@@ -55,19 +55,22 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
               {`NT Headless Site Template`}
             </a>
           )}
+        </div>
+        {/* CTA */}
+        <div className={`flex flex-row flex-wrap items-center justify-center`}>
           {/* Navigation Menu */}
           <NavigationMenu
             menuItems={flatListToHierarchical(menuItems)}
             isOpen={open}
+            type="secondary"
             toggleOpen={() => cycleOpen()}
           />
+          {cta ? (
+            <Button type={`primary`} className={`ml-4`} href={cta.url ?? ``}>
+              {cta.title}
+            </Button>
+          ) : null}
         </div>
-        {/* CTA */}
-        {cta ? (
-          <Button type={`primary`} className={`ml-4`} href={cta.url ?? ``}>
-            {cta.title}
-          </Button>
-        ) : null}
       </div>
     </header>
   );
