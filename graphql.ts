@@ -13224,7 +13224,9 @@ export type SiteSettings_Sitesettings = AcfFieldGroup & {
   __typename?: "SiteSettings_Sitesettings";
   address?: Maybe<Acf_GoogleMap>;
   announcements?: Maybe<Array<Maybe<SiteSettings_Sitesettings_Announcements>>>;
+  cta?: Maybe<AcfLink>;
   customAddressLabel?: Maybe<Scalars["String"]>;
+  email?: Maybe<AcfLink>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   logo?: Maybe<MediaItem>;

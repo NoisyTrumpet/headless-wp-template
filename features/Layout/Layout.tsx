@@ -1,28 +1,49 @@
 import { Main } from "features/Main"; // SEO
-import { MediaItem, MenuItem } from "graphql";
+import {
+  AcfLink,
+  MediaItem,
+  MenuItem,
+  PostTypeSeo,
+  RootQueryToMenuItemConnection,
+} from "graphql";
+import { SEO } from "features/SEO";
 
-// import { Header, Footer} from "components"
+import { Header } from "components";
 
 export interface LayoutProps {
   children: React.ReactNode;
-  menuItems: MenuItem[];
-  footerMenuItems: MenuItem[];
+  headerMenuItems: RootQueryToMenuItemConnection;
+  footerMenuItems: RootQueryToMenuItemConnection;
   title: string;
   description: string;
   logo: MediaItem;
+  logoAlt: MediaItem;
+  logoWhite: MediaItem;
+  seo: PostTypeSeo;
+  cta: AcfLink;
 }
 
 const Layout = ({
   children,
-  menuItems,
+  headerMenuItems,
   footerMenuItems,
+  cta,
   title,
   description,
+  seo,
+  logo,
+  logoAlt,
+  logoWhite,
 }: LayoutProps) => {
   return (
     <>
-      {/* <SEO /> */}
-      {/* <Header menuItems={menuItems} /> */}
+      <SEO seo={seo} />
+      <Header
+        menuItems={headerMenuItems.nodes}
+        logo={logo}
+        logoAlt={logoAlt}
+        cta={cta}
+      />
       <Main className={`main`}>{children}</Main>
       {/* <Footer menuItems={footerMenuItems} /> */}
     </>

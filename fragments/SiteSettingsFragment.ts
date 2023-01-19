@@ -16,6 +16,16 @@ export const SITE_SETTINGS_FRAGMENT = gql`
           url
         }
       }
+      email {
+        target
+        title
+        url
+      }
+      cta {
+        target
+        title
+        url
+      }
       address {
         city
         country

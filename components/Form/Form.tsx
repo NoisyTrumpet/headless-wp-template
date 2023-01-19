@@ -38,7 +38,7 @@ const Form = ({ className, title, content, form }: FormProps) => {
   return (
     <div className={`${className} relative my-12 w-full px-6 md:px-0`}>
       <div className={`container mx-auto text-center`}>
-        <h2 className={`font-heading text-primary text-4xl`}>
+        <h2 className={`font-heading text-4xl text-primary`}>
           <Balancer>{title}</Balancer>
         </h2>
         <Balancer>

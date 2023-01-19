@@ -23,6 +23,16 @@ export default function Component() {
 
   const { page, headerMenuItems, footerMenuItems, siteSettings } = data;
   const { seo, title } = page;
+  const {
+    address,
+    customAddressLabel,
+    phoneNumber,
+    logo,
+    logoWhite,
+    logoAlt,
+    cta,
+    email,
+  } = siteSettings.siteSettings;
 
   return (
     <Layout
@@ -30,6 +40,10 @@ export default function Component() {
       footerMenuItems={footerMenuItems}
       siteSettings={siteSettings}
       seo={seo}
+      logo={logo}
+      logoWhite={logoWhite}
+      logoAlt={logoAlt}
+      cta={cta}
     >
       <h1>{title}</h1>
     </Layout>
