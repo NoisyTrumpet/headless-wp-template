@@ -138,6 +138,7 @@ const GravityFormsForm = ({ form, formId }: Props) => {
       (error: FieldError) => error?.id === id
     );
   }
+  console.log(state);
 
   return (
     <>

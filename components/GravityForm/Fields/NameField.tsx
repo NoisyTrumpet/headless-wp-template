@@ -47,7 +47,15 @@ const AUTOCOMPLETE_ATTRIBUTES: { [key: string]: string } = {
 };
 
 export default function NameField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, inputs, isRequired } = field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    inputs,
+    isRequired,
+  } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
@@ -79,11 +87,13 @@ export default function NameField({ field, fieldErrors, formId }: Props) {
   return (
     <fieldset
       id={htmlId}
-      className={`gfield flex w-full flex-col justify-center gap-4 md:flex-row gfield-${type} ${
+      className={`gfield flex w-full flex-col justify-center gap-4 font-sans md:flex-row gfield-${type} ${
         cssClass ?? ""
       }`.trim()}
     >
-      <legend style={{ display: `none` }}>{label}</legend>
+      <legend
+        className={`mb-2 text-left text-sm font-bold text-gray-700`}
+      >{`${label} ${isRequired ? "(required)" : ""}`}</legend>
       {/* {prefixInput ? (
         <>
           <select
@@ -114,14 +124,14 @@ export default function NameField({ field, fieldErrors, formId }: Props) {
             (key === "first" || key === "last") && (
               <div key={key} className={`w-full`}>
                 <label
-                  style={{ display: `none` }}
+                  className="hidden text-left text-sm font-medium text-gray-700"
                   htmlFor={`input_${formId}_${id}_${key}`}
                 >
                   {inputLabel}
                 </label>
                 <input
                   type="text"
-                  className={`form-input[type='text'] font-body w-full rounded-lg`}
+                  className={`form-input[type='text'] font-body w-full rounded-lg bg-slate-50 px-2 py-2`}
                   name={String(key)}
                   id={`input_${formId}_${id}_${key}`}
                   placeholder={

@@ -15,7 +15,7 @@ interface Props {
 
 export default function SelectField({ field, fieldErrors, formId }: Props) {
   const {
-    id,
+    databaseId: id,
     type,
     label,
     description,

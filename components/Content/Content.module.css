@@ -1,0 +1,11 @@
+.content-wrapper a {
+  @apply text-blue-500;
+}
+
+.content-wrapper ul {
+  @apply ml-6 list-disc;
+}
+
+.content-wrapper li {
+  @apply list-disc;
+}

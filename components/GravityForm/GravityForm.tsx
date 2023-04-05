@@ -6,17 +6,10 @@ import GravityFormsForm from "./GravityFormsForm";
 
 interface Props {
   form: GravityFormsFormType;
-  isLoading: boolean;
-  formId?: number;
+  formId: number;
 }
 
-const GravityForm = ({ form, isLoading, formId }: Props) => {
-  if (isLoading && !formId) {
-    return <div>Loading...</div>;
-  }
-
-  // console.log(formId);
-
+const GravityForm = ({ form, formId }: Props) => {
   return (
     <GravityFormProvider>
       <GravityFormsForm form={form} formId={formId} />

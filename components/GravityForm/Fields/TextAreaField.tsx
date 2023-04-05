@@ -14,7 +14,14 @@ interface Props {
 const DEFAULT_VALUE = "";
 
 export default function TextAreaField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, isRequired } = field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    isRequired,
+  } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
@@ -23,16 +30,21 @@ export default function TextAreaField({ field, fieldErrors, formId }: Props) {
   const value = fieldValue?.value || DEFAULT_VALUE;
 
   return (
-    <div className={`gfield gfield-${type} ${cssClass}`.trim()}>
-      <label className={`text-md font-heading text-gray-800`} htmlFor={htmlId}>
-        {label}
+    <div
+      className={`gfield flex flex-col font-sans gfield-${type} ${cssClass}`.trim()}
+    >
+      <label
+        className={`mb-2 text-left text-sm font-bold text-gray-700`}
+        htmlFor={htmlId}
+      >
+        {`${label} ${isRequired ? "(required)" : ""}`}
       </label>
       <textarea
         name={String(id)}
         id={htmlId}
         required={Boolean(isRequired)}
         value={value}
-        className={`form-input[type='textarea'] font-body w-full rounded-lg text-gray-500`}
+        className={`form-input[type='textarea'] font-body h-48 w-full rounded-lg bg-slate-50 p-2 text-gray-500`}
         placeholder={(isRequired ? `${label}*` : label) ?? ``}
         onChange={(event) => {
           dispatch({

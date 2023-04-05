@@ -39,6 +39,7 @@ export const SITE_SETTINGS_FRAGMENT = gql`
         postCode
         state
       }
+      customAddressLabel
       phoneNumber {
         target
         title

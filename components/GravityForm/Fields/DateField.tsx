@@ -1,22 +1,9 @@
-import { gql } from "@apollo/client";
-
 import { DateField as DateFieldType, FieldError } from "graphql";
 import useGravityForm, {
   ACTION_TYPES,
   FieldValue,
   StringFieldValue,
 } from "utilities/useGravityForm";
-
-export const DATE_FIELD_FIELDS = gql`
-  fragment DateFieldFields on DateField {
-    id
-    label
-    description
-    cssClass
-    isRequired
-    placeholder
-  }
-`;
 
 interface Props {
   field: DateFieldType;
@@ -27,8 +14,15 @@ interface Props {
 const DEFAULT_VALUE = "";
 
 export default function DateField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, isRequired, placeholder } =
-    field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    isRequired,
+    placeholder,
+  } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(

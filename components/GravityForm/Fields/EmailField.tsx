@@ -28,8 +28,15 @@ interface Props {
 const DEFAULT_VALUE = "";
 
 export default function EmailField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, isRequired, placeholder } =
-    field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    isRequired,
+    placeholder,
+  } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
@@ -38,14 +45,21 @@ export default function EmailField({ field, fieldErrors, formId }: Props) {
   const value = fieldValue?.emailValues?.value || DEFAULT_VALUE;
 
   return (
-    <div className={`gfield gfield-${type} ${cssClass ?? ""}`.trim()}>
-      <label style={{ display: `none` }} htmlFor={htmlId}>
+    <div
+      className={`gfield flex flex-col gap-2 gfield-${type} ${
+        cssClass ?? ""
+      }`.trim()}
+    >
+      <label
+        className={`text-left font-sans text-sm font-bold text-gray-700`}
+        htmlFor={htmlId}
+      >
         {label}
       </label>
       <input
         type="email"
         name={String(id)}
-        className={`form-input[type='email'] font-body w-full rounded-lg`}
+        className={`form-input[type='email'] font-body w-full rounded-lg bg-slate-50 p-2 font-sans`}
         id={htmlId}
         placeholder={field?.isRequired ? `${label}*` : label || ""}
         required={isRequired || false}

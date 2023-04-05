@@ -14,8 +14,15 @@ interface Props {
 const DEFAULT_VALUE = "";
 
 export default function PhoneField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, isRequired, placeholder } =
-    field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    isRequired,
+    placeholder,
+  } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
@@ -24,14 +31,19 @@ export default function PhoneField({ field, fieldErrors, formId }: Props) {
   const value = fieldValue?.value || DEFAULT_VALUE;
 
   return (
-    <div className={`gfield gfield-${type} ${cssClass}`.trim()}>
-      <label style={{ display: `none` }} htmlFor={htmlId}>
+    <div
+      className={`gfield gfield flex w-full flex-col justify-center gap-2 font-sans gfield-${type} ${cssClass}`.trim()}
+    >
+      <label
+        className={`mb-2 text-left font-sans text-sm font-bold text-gray-700`}
+        htmlFor={htmlId}
+      >
         {label}
       </label>
       <input
         type="tel"
         name={String(id)}
-        className={`form-input[type='tel'] font-body w-full rounded-lg text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
+        className={`form-input[type='tel'] font-body w-full rounded-lg bg-slate-50 p-2 text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
         id={htmlId}
         required={Boolean(isRequired)}
         placeholder={placeholder || isRequired ? `${label}*` : label || ""}

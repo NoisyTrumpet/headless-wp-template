@@ -20,7 +20,15 @@ interface Props {
 const DEFAULT_VALUE: CheckboxInput[] = [];
 
 export default function CheckboxField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, inputs, choices } = field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    inputs,
+    choices,
+  } = field;
   const checkboxInputs =
     choices?.map((choice, index) => ({ ...choice, id: inputs?.[index]?.id })) ||
     [];

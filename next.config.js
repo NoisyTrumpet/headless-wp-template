@@ -7,7 +7,6 @@ module.exports = withFaust({
   productionBrowserSourceMaps: true,
   trailingSlash: true,
   experimental: {
-    nextScriptWorkers: true,
     swcFileReading: true,
     // Font Loaders
     // fontLoaders: [

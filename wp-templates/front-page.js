@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
-import { Layout } from "features"; // Blocks eventually
+import { Layout, Blocks } from "features"; // Blocks eventually
 import { NavigationMenu } from "components";
 import {
   BLOG_INFO_FRAGMENT,
@@ -22,7 +22,8 @@ export default function Component() {
   }
 
   const { page, headerMenuItems, footerMenuItems, siteSettings } = data;
-  const { seo, title } = page;
+  const { seo, title, flexibleContent } = page;
+  const { blocks } = flexibleContent;
   const {
     address,
     customAddressLabel,
@@ -45,13 +46,7 @@ export default function Component() {
       logoAlt={logoAlt}
       cta={cta}
     >
-      <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
-        <div clasName={`grid text-center h-fit relative w-full`}>
-          <h1 className="text-center text-4xl font-bold">
-            Noisy Trumpet Headless WordPress Starter
-          </h1>
-        </div>
-      </div>
+      <Blocks blocks={blocks} />
     </Layout>
   );
 }
@@ -68,11 +63,15 @@ Component.query = gql`
     siteSettings {
       ...SiteSettingsFragment
     }
+
     page(id: "/", idType: URI, asPreview: $asPreview) {
       id
       title
       seo {
         ...SEOFragment
+      }
+      flexibleContent {
+        ...BlocksFragment
       }
     }
     headerMenuItems: menuItems(
@@ -95,6 +94,7 @@ Component.query = gql`
   ${BLOG_INFO_FRAGMENT}
   ${SITE_SETTINGS_FRAGMENT}
   ${NavigationMenu.fragments.entry}
+  ${Blocks.fragments.entry}
   ${SEO_FRAGMENT}
 `;
 

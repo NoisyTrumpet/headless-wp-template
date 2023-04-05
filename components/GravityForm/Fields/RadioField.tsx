@@ -29,7 +29,7 @@ interface Props {
 const DEFAULT_VALUE = "";
 
 export default function RadioField({ field, fieldErrors, formId }: Props) {
-  const { id, type, label, description, cssClass, choices } = field;
+  const { databaseId: id, type, label, description, cssClass, choices } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(

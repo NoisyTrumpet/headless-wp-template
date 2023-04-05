@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import Content from "components/Content/Content";
 import { GravityForm } from "components/GravityForm";
 import { Loading } from "features";
 import { Page_Flexiblecontent_Blocks_Form } from "graphql";
@@ -10,9 +11,10 @@ interface FormProps extends Page_Flexiblecontent_Blocks_Form {
 }
 
 const Form = ({ className, title, content, form }: FormProps) => {
-  const { data, loading, error } = useQuery(FORM_QUERY, {
+  const { data, loading, error } = useQuery(FORM_FRAGMENT, {
     variables: {
       id: form,
+      idType: "DATABASE_ID",
     },
   });
 
@@ -36,20 +38,16 @@ const Form = ({ className, title, content, form }: FormProps) => {
   }
 
   return (
-    <div className={`${className} relative my-12 w-full px-6 md:px-0`}>
-      <div className={`container mx-auto text-center`}>
-        <h2 className={`font-heading text-4xl text-primary`}>
+    <div className={`${className} relative my-12 w-full px-6 md:px-0 `}>
+      <div className={`container mx-auto flex  flex-col gap-6 text-center`}>
+        <h2 className={`font-sans text-4xl font-bold text-primary`}>
           <Balancer>{title}</Balancer>
         </h2>
-        <Balancer>
-          <div
-            className={`text-md font-body my-4 mx-auto max-w-xl text-gray-800`}
-            dangerouslySetInnerHTML={{ __html: content ?? `` }}
-          />
-        </Balancer>
-        {hasForm && (
-          <GravityForm form={formData} isLoading={loading} formId={form} />
-        )}
+        <Content
+          className={`text-md mx-auto my-4 max-w-xl font-sans text-gray-800`}
+          content={content}
+        />
+        <GravityForm form={formData} formId={form ?? 1} />
       </div>
     </div>
   );
@@ -57,7 +55,15 @@ const Form = ({ className, title, content, form }: FormProps) => {
 
 export default Form;
 
-const FORM_QUERY = gql`
+export const FORM_BLOCK_FRAGMENT = gql`
+  fragment FormBlockFragment on Page_Flexiblecontent_Blocks_Form {
+    title
+    content
+    form
+  }
+`;
+
+const FORM_FRAGMENT = gql`
   query FormQuery($id: ID!) {
     gfForm(id: $id, idType: DATABASE_ID) {
       id
@@ -71,35 +77,59 @@ const FORM_QUERY = gql`
       cssClass
       formFields {
         nodes {
-          id
+          databaseId
           type
 
           ... on NameField {
-            id
+            databaseId
             type
             label
             description
             cssClass
+            isRequired
             inputs {
-              key
+              id
               label
-              placeholder
-              choices {
-                text
-                value
+              ... on NameInputProperty {
+                id
+                name
+                placeholder
+                label
+                key
+                isHidden
+                hasChoiceValue
+                defaultValue
+                customLabel
+                choices {
+                  isSelected
+                  text
+                  value
+                }
+                autocompleteAttribute
               }
             }
           }
           ... on EmailField {
-            id
-            label
-            description
+            databaseId
+            adminLabel
+            canPrepopulate
             cssClass
+            databaseId
+            description
+            descriptionPlacement
+            displayOnly
+            errorMessage
+            hasAutocomplete
+            hasEmailConfirmation
+            inputType
+            inputName
             isRequired
+            label
             placeholder
+            visibility
           }
           ... on TextField {
-            id
+            databaseId
             label
             description
             cssClass
@@ -107,7 +137,7 @@ const FORM_QUERY = gql`
             placeholder
           }
           ... on TextAreaField {
-            id
+            databaseId
             label
             description
             cssClass
@@ -115,48 +145,105 @@ const FORM_QUERY = gql`
             placeholder
           }
           ... on CheckboxField {
-            id
-            label
-            isRequired
-            description
-            cssClass
-            choices {
-              isSelected
+            canPrepopulate
+            checkboxValues {
+              inputId
               text
               value
             }
-            inputs {
-              id
+            choices {
+              ... on CheckboxFieldChoice {
+                isSelected
+                text
+                value
+              }
+              value
+              text
             }
+            cssClass
+            databaseId
+            description
+            displayOnly
+            errorMessage
+            hasChoiceValue
+            hasSelectAll
+            inputName
+            inputType
+            inputs {
+              ... on CheckboxInputProperty {
+                id
+                name
+                label
+              }
+            }
+            isRequired
+            label
+            labelPlacement
+            type
+            value
           }
           ... on MultiSelectField {
             id
-            label
-            description
-            isRequired
-            cssClass
             choices {
-              isSelected
-              text
-              value
+              ... on MultiSelectFieldChoice {
+                isSelected
+                text
+                value
+              }
             }
+            cssClass
+            databaseId
+            errorMessage
+            displayOnly
+            description
+            hasChoiceValue
+            hasEnhancedUI
+            inputName
+            inputType
+            inputs {
+              ... on CheckboxInputProperty {
+                id
+                name
+                label
+              }
+            }
+            isRequired
+            label
+            type
+            value
+            values
           }
           ... on SelectField {
-            id
-            label
-            description
-            isRequired
-            defaultValue
-            cssClass
-            placeholder
+            canPrepopulate
             choices {
-              text
-              isSelected
-              value
+              ... on SelectFieldChoice {
+                isSelected
+                text
+                value
+              }
             }
+            autocompleteAttribute
+            cssClass
+            databaseId
+            defaultValue
+            description
+            displayOnly
+            errorMessage
+            hasAutocomplete
+            hasChoiceValue
+            hasEnhancedUI
+            inputs {
+              id
+              label
+            }
+            isRequired
+            label
+            placeholder
+            shouldAllowDuplicates
+            type
           }
           ... on WebsiteField {
-            id
+            databaseId
             placeholder
             label
             description
@@ -165,7 +252,7 @@ const FORM_QUERY = gql`
             value
           }
           ... on PhoneField {
-            id
+            databaseId
             label
             description
             cssClass
@@ -173,7 +260,7 @@ const FORM_QUERY = gql`
             placeholder
           }
           ... on DateField {
-            id
+            databaseId
             label
             description
             cssClass
@@ -182,7 +269,7 @@ const FORM_QUERY = gql`
           }
 
           ... on NumberField {
-            id
+            databaseId
             label
             description
             cssClass
@@ -190,19 +277,44 @@ const FORM_QUERY = gql`
             placeholder
           }
           ... on RadioField {
-            id
-            label
-            description
-            cssClass
-            isRequired
             choices {
-              isSelected
               text
               value
+              ... on RadioFieldChoice {
+                isOtherChoice
+                isSelected
+                text
+                value
+              }
             }
+            cssClass
+            conditionalLogic {
+              actionType
+              logicType
+              rules {
+                fieldId
+                operator
+                value
+              }
+            }
+            databaseId
+            description
+            displayOnly
+            errorMessage
+            hasChoiceValue
+            hasOtherChoice
+            inputType
+            inputs {
+              id
+              label
+            }
+            isRequired
+            label
+            shouldAllowDuplicates
+            type
+            value
           }
           ... on AddressField {
-            id
             addressType
             addressValues {
               city
@@ -212,26 +324,40 @@ const FORM_QUERY = gql`
               street
               zip
             }
-            value
-            type
-            label
             adminLabel
+            canPrepopulate
             cssClass
+            databaseId
+            defaultCountry
+            defaultProvince
+            defaultState
+            description
+            descriptionPlacement
+            displayOnly
+            errorMessage
+            hasAutocomplete
             inputName
             inputType
-            hasAutocomplete
-            isRequired
             inputs {
-              placeholder
-              name
               label
-              key
-              isHidden
               id
-              defaultValue
-              customLabel
-              autocompleteAttribute
+              ... on AddressInputProperty {
+                id
+                name
+                autocompleteAttribute
+                customLabel
+                defaultValue
+                isHidden
+                key
+                label
+                placeholder
+              }
             }
+            isRequired
+            label
+            shouldCopyValuesOption
+            type
+            value
           }
         }
       }

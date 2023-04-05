@@ -25,7 +25,7 @@ const Footer = ({
   cta,
 }: FooterProps) => {
   return (
-    <footer className={`bg-primary text-gray-100`}>
+    <footer className={`bg-primary font-sans text-gray-100`}>
       <div
         className={`container mx-auto flex flex-col flex-wrap py-8 md:flex-row md:justify-between`}
       >

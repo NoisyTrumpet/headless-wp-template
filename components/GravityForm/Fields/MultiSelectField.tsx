@@ -27,7 +27,15 @@ export default function MultiSelectField({
   fieldErrors,
   formId,
 }: Props) {
-  const { id, type, label, description, cssClass, isRequired, choices } = field;
+  const {
+    databaseId: id,
+    type,
+    label,
+    description,
+    cssClass,
+    isRequired,
+    choices,
+  } = field;
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(

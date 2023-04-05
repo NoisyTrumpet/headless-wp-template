@@ -37,7 +37,7 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
     <header
       className={`${
         isScrolledPast ? `shadow-md` : ``
-      } body-font sticky top-0 z-30 max-h-fit bg-white text-gray-600 transition-shadow`}
+      } body-font sticky top-0 z-30 max-h-fit bg-white font-sans text-gray-600 transition-shadow`}
       ref={ref}
     >
       <div className="container mx-auto flex flex-row flex-wrap items-center justify-center py-4 md:justify-between">

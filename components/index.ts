@@ -3,3 +3,4 @@ export { NavigationMenu } from "./NavigationMenu";
 export { FeaturedImage } from "./FeaturedImage";
 export { Form } from "./Form";
 export { Footer } from "./Footer";
+export { Hero } from "./Hero";

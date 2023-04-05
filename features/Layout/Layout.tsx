@@ -10,7 +10,13 @@ import {
 import { SEO } from "features/SEO";
 
 import { Header, Footer } from "components";
+import { Inter } from "next/font/google";
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  variable: "--font-sans",
+});
 export interface LayoutProps {
   children: React.ReactNode;
   headerMenuItems: RootQueryToMenuItemConnection;
@@ -45,21 +51,23 @@ const Layout = ({
   return (
     <>
       <SEO seo={seo} />
-      <Header
-        menuItems={headerMenuItems.nodes}
-        logo={logo}
-        logoAlt={logoAlt}
-        cta={cta}
-      />
-      <Main className={`main`}>{children}</Main>
-      <Footer
-        menuItems={footerMenuItems.nodes}
-        cta={cta}
-        phoneNumber={phoneNumber}
-        logo={logoWhite}
-        address={address}
-        email={email}
-      />
+      <div className={`${inter.variable}`}>
+        <Header
+          menuItems={headerMenuItems.nodes}
+          logo={logo}
+          logoAlt={logoAlt}
+          cta={cta}
+        />
+        <Main className={`main`}>{children}</Main>
+        <Footer
+          menuItems={footerMenuItems.nodes}
+          cta={cta}
+          phoneNumber={phoneNumber}
+          logo={logoWhite}
+          address={address}
+          email={email}
+        />
+      </div>
     </>
   );
 };
