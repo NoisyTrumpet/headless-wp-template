@@ -33,8 +33,6 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
     });
   }, [scrollY]);
 
-  console.log(logo);
-
   return (
     <header
       className={`${

@@ -105,7 +105,6 @@ const [messages, setMessages] = useState<string[]>([]);
       (error: FieldError) => error?.id === id
     );
   }
-  console.log(state);
 
   return (
     <>
