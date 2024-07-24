@@ -1,7 +1,7 @@
 import { Main } from "features/Main"; // SEO
 import {
   AcfLink,
-  Acf_GoogleMap,
+  AcfGoogleMap,
   MediaItem,
   MenuItem,
   PostTypeSeo,
@@ -29,7 +29,7 @@ export interface LayoutProps {
   seo: PostTypeSeo;
   cta: AcfLink;
   phoneNumber: AcfLink;
-  address: Acf_GoogleMap;
+  address: AcfGoogleMap;
   email: AcfLink;
 }
 

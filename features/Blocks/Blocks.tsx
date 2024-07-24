@@ -8,18 +8,18 @@ const Form = dynamic(() => import("components/Form/Form"), {
 });
 
 import {
-  Page_Flexiblecontent_Blocks,
-  Page_Flexiblecontent_Blocks_Hero,
-  Page_Flexiblecontent_Blocks_Form,
+  FlexibleContent,
+  FlexibleContentBlocksHeroLayout,
+  FlexibleContentBlocksFormLayout,
 } from "graphql";
 import { gql } from "@apollo/client";
 
 interface BlocksProps {
-  blocks: Page_Flexiblecontent_Blocks[];
+  blocks: FlexibleContent[];
 }
 
 interface BlockProps {
-  block: Page_Flexiblecontent_Blocks;
+  block: FlexibleContent;
 }
 
 const prefix = "Page_Flexiblecontent_Blocks_";
@@ -32,11 +32,11 @@ const Block = ({ block }: BlockProps) => {
   switch (name) {
     // Hero
     case "Hero": {
-      return <Hero {...(block as Page_Flexiblecontent_Blocks_Hero)} />;
+      return <Hero {...(block as FlexibleContentBlocksHeroLayout)} />;
     }
     // Form
     case "Form": {
-      return <Form {...(block as Page_Flexiblecontent_Blocks_Form)} />;
+      return <Form {...(block as FlexibleContentBlocksFormLayout)} />;
     }
 
     default: {
@@ -60,12 +60,12 @@ export default Blocks;
 
 Blocks.fragments = {
   entry: gql`
-    fragment BlocksFragment on Page_Flexiblecontent {
+    fragment BlocksFragment on FlexibleContent {
       blocks {
-        ... on Page_Flexiblecontent_Blocks_Hero {
+        ... on FlexibleContentBlocksHeroLayout {
           ...HeroFragment
         }
-        ... on Page_Flexiblecontent_Blocks_Form {
+        ... on FlexibleContentBlocksFormLayout {
           ...FormBlockFragment
         }
       }
