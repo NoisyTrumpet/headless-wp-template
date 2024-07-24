@@ -2,7 +2,12 @@ import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
 import { useCycle, useScroll } from "framer-motion";
-import { AcfLink, AcfMediaItemConnectionEdge, MediaItem, MenuItem } from "graphql";
+import {
+  AcfLink,
+  AcfMediaItemConnectionEdge,
+  MediaItem,
+  MenuItem,
+} from "graphql";
 import { useEffect, useRef, useState } from "react";
 import flatListToHierarchical from "utilities/flatListToHierarchical";
 
@@ -46,10 +51,7 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
         >
           {/* Logo */}
           {logo ? (
-            <FeaturedImage
-              image={logo.node}
-              className={`mb-4 w-32 md:mb-0`}
-            />
+            <FeaturedImage image={logo.node} className={`mb-4 w-32 md:mb-0`} />
           ) : (
             <a
               href="https://noisytrumpet.com"

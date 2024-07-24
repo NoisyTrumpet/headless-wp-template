@@ -1,7 +1,12 @@
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
-import { AcfLink, AcfGoogleMap, MenuItem, AcfMediaItemConnectionEdge } from "graphql";
+import {
+  AcfLink,
+  AcfGoogleMap,
+  MenuItem,
+  AcfMediaItemConnectionEdge,
+} from "graphql";
 import Link from "next/link";
 import Logo from "public/logo.svg";
 import { BsInstagram } from "react-icons/bs";

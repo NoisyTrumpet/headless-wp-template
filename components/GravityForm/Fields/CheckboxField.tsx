@@ -35,14 +35,14 @@ export default function CheckboxField({ field, fieldErrors, formId }: Props) {
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
-    (fieldValue: FieldValue) => fieldValue.id === id
+    (fieldValue: FieldValue) => fieldValue.id === id,
   ) as CheckboxFieldValue | undefined;
   const checkboxValues = fieldValue?.checkboxValues || DEFAULT_VALUE;
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, checked } = event.target;
     const otherCheckboxValues = checkboxValues.filter(
-      (checkboxValue: CheckboxInput) => checkboxValue.inputId !== Number(name)
+      (checkboxValue: CheckboxInput) => checkboxValue.inputId !== Number(name),
     );
     const newCheckboxValues = checked
       ? [...otherCheckboxValues, { inputId: Number(name), value }]

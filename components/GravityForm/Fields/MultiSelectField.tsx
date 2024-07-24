@@ -39,14 +39,14 @@ export default function MultiSelectField({
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
-    (fieldValue: FieldValue) => fieldValue.id === id
+    (fieldValue: FieldValue) => fieldValue.id === id,
   ) as StringFieldValues | undefined;
   const values = fieldValue?.values || DEFAULT_VALUE;
   const options =
     choices?.map((choice) => ({ value: choice?.value, label: choice?.text })) ||
     [];
   const selectedOptions = options.filter((option) =>
-    values.includes(String(option?.value))
+    values.includes(String(option?.value)),
   );
 
   function handleChange(value: any, actionMeta: ActionMeta<any>) {

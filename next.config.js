@@ -12,22 +12,22 @@ module.exports = withFaust({
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: getWpHostname(),
-        port: '',
-        pathname: '/**',
+        port: "",
+        pathname: "/**",
       },
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '',
-        pathname: '/**',
+        protocol: "http",
+        hostname: "localhost",
+        port: "",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: process.env.NEXT_PUBLIC_WORDPRESS_URL,
-        port: '',
-        pathname: '/**',
+        port: "",
+        pathname: "/**",
       },
     ],
   },

@@ -27,7 +27,7 @@ export default function SelectField({ field, fieldErrors, formId }: Props) {
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
-    (fieldValue: FieldValue) => fieldValue.id === id
+    (fieldValue: FieldValue) => fieldValue.id === id,
   ) as StringFieldValue | undefined;
   const value = fieldValue?.value || String(defaultValue);
 

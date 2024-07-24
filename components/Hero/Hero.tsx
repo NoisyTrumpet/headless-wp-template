@@ -25,12 +25,12 @@ const Hero = ({
     `items-center`,
     image
       ? `container mx-auto flex flex-col md:flex-row`
-      : `container mx-auto flex flex-col`
+      : `container mx-auto flex flex-col`,
   );
 
   let innerItemClass = clsx(
     `flex flex-col gap-4`,
-    image ? `md:w-1/2` : `md:w-full`
+    image ? `md:w-1/2` : `md:w-full`,
   );
 
   return (

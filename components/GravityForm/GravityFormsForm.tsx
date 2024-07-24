@@ -41,7 +41,7 @@ const GravityFormsForm = ({ form, formId }: Props) => {
     };
 
   const { state } = useGravityForm();
-const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<string[]>([]);
 
   const [submitGfForm, { data, loading, error }] = useMutation(
     gql`
@@ -64,17 +64,22 @@ const [messages, setMessages] = useState<string[]>([]);
     {
       onCompleted: (data: any) => {
         const newMessages = [];
-        if (data?.submitGfForm?.errors && data?.submitGfForm?.errors.length > 0) {
+        if (
+          data?.submitGfForm?.errors &&
+          data?.submitGfForm?.errors.length > 0
+        ) {
           data.submitGfForm.errors.forEach((error: FieldError) => {
             newMessages.push(`Error: ${error.message}`);
           });
         }
         if (data?.submitGfForm?.confirmation) {
-          newMessages.push(`Success: ${data.submitGfForm.confirmation.message}`);
+          newMessages.push(
+            `Success: ${data.submitGfForm.confirmation.message}`,
+          );
         }
         setMessages(newMessages);
       },
-    }
+    },
   );
 
   const haveEntryId = Boolean(data?.entry?.entryId);
@@ -95,14 +100,14 @@ const [messages, setMessages] = useState<string[]>([]);
           fieldValues: state,
         },
       },
-    })
+    });
   };
 
   function getFieldErrors(id: number): FieldError[] {
     if (!haveFieldErrors) return [];
 
     return data?.submitGfForm?.errors.filter(
-      (error: FieldError) => error?.id === id
+      (error: FieldError) => error?.id === id,
     );
   }
 
@@ -140,7 +145,9 @@ const [messages, setMessages] = useState<string[]>([]);
         </div>
       </form>
       {messages.map((message, index) => (
-        <div key={index} className="message text-primary">{message}</div>
+        <div key={index} className="message text-primary">
+          {message}
+        </div>
       ))}
     </>
   );
