@@ -1,14 +1,14 @@
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
-import { AcfLink, AcfGoogleMap, MediaItem, MenuItem } from "graphql";
+import { AcfLink, AcfGoogleMap, MenuItem, AcfMediaItemConnectionEdge } from "graphql";
 import Link from "next/link";
 import Logo from "public/logo.svg";
 import { BsInstagram } from "react-icons/bs";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 
 export interface FooterProps {
-  logo: MediaItem;
+  logo: AcfMediaItemConnectionEdge;
   menuItems: MenuItem[];
   phoneNumber: AcfLink;
   address: AcfGoogleMap;
@@ -34,7 +34,7 @@ const Footer = ({
           className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
         >
           {logo ? (
-            <FeaturedImage image={logo} className={`mb-4 w-32 md:mb-0`} />
+            <FeaturedImage image={logo.node} className={`mb-4 w-32 md:mb-0`} />
           ) : (
             <a
               href="https://noisytrumpet.com"

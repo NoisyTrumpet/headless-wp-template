@@ -2,7 +2,7 @@ import { Main } from "features/Main"; // SEO
 import {
   AcfLink,
   AcfGoogleMap,
-  MediaItem,
+  AcfMediaItemConnectionEdge,
   MenuItem,
   PostTypeSeo,
   RootQueryToMenuItemConnection,
@@ -23,9 +23,9 @@ export interface LayoutProps {
   footerMenuItems: RootQueryToMenuItemConnection;
   title: string;
   description: string;
-  logo: MediaItem;
-  logoAlt: MediaItem;
-  logoWhite: MediaItem;
+  logo: AcfMediaItemConnectionEdge;
+  logoAlt: AcfMediaItemConnectionEdge;
+  logoWhite: AcfMediaItemConnectionEdge;
   seo: PostTypeSeo;
   cta: AcfLink;
   phoneNumber: AcfLink;
