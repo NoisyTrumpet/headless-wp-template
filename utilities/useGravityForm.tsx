@@ -110,7 +110,7 @@ function reducer(state: FieldValueUnion[], action: Action) {
     }
     default:
       throw new Error(
-        `Field value update operation not supported: ${action.type}.`
+        `Field value update operation not supported: ${action.type}.`,
       );
   }
 }

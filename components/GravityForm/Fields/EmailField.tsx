@@ -40,7 +40,7 @@ export default function EmailField({ field, fieldErrors, formId }: Props) {
   const htmlId = `field_${formId}_${id}`;
   const { state, dispatch } = useGravityForm();
   const fieldValue = state.find(
-    (fieldValue: FieldValue) => fieldValue.id === id
+    (fieldValue: FieldValue) => fieldValue.id === id,
   ) as EmailFieldValue | undefined;
   const value = fieldValue?.emailValues?.value || DEFAULT_VALUE;
 

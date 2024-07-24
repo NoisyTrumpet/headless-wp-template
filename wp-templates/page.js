@@ -1,20 +1,20 @@
+import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import * as MENUS from "constants/menus";
-import { Layout, Blocks } from "features"; // Blocks eventually
-import { NavigationMenu } from "components";
+import * as MENUS from "../constants/menus";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
 } from "fragments";
+import { MenuItem, Page, SiteSettings } from "graphql";
+import { NavigationMenu } from "components";
+import { Layout, Blocks } from "features";
 
-export default function Component() {
-  const { data, loading, error } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+const Component = (props) => {
+  const { data, loading, error } = props;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading type="page" />;
   }
 
   if (error) {
@@ -49,10 +49,11 @@ export default function Component() {
       <Blocks blocks={blocks} />
     </Layout>
   );
-}
+};
 
 Component.query = gql`
-  query HomePage(
+  query PageData(
+    $databaseId: ID!
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
     $asPreview: Boolean = false
@@ -64,7 +65,7 @@ Component.query = gql`
       ...SiteSettingsFragment
     }
 
-    page(id: "/", idType: URI, asPreview: $asPreview) {
+    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       id
       title
       seo {
@@ -98,9 +99,13 @@ Component.query = gql`
   ${SEO_FRAGMENT}
 `;
 
-Component.variables = () => {
+export default Component;
+
+Component.variables = ({ databaseId }, ctx) => {
   return {
+    databaseId,
     headerLocation: MENUS.PRIMARY_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
+    asPreview: ctx?.asPreview,
   };
 };

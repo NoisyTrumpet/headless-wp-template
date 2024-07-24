@@ -1,4 +1,3 @@
-import "react-toastify/dist/ReactToastify.css";
 import { gql, useMutation } from "@apollo/client";
 
 import {
@@ -10,41 +9,17 @@ import {
   SubmitGfFormInput,
 } from "graphql";
 import useGravityForm from "utilities/useGravityForm";
-import { toast, ToastContainer } from "react-toastify";
 // import styles from "./GravityForm.module.scss";
 
 import GravityFormsField from "./GravityFormsField";
 import { Button } from "components/Button";
 import removeHtml from "utilities/removeHtml";
+import { useState } from "react";
 
 interface Props {
   form: GravityFormsFormType;
   formId?: number;
 }
-
-const successOptions = {
-  autoClose: 3000,
-  // closeButton: FontAwesomeCloseButton,
-  type: toast.TYPE.SUCCESS,
-  hideProgressBar: false,
-  position: toast.POSITION.TOP_RIGHT,
-  pauseOnHover: true,
-  // transition: MyCustomTransition,
-  // progress: 0.2
-  // and so on ...
-};
-
-const fieldError = {
-  autoClose: 3000,
-  // closeButton: FontAwesomeCloseButton,
-  type: toast.TYPE.ERROR,
-  hideProgressBar: false,
-  position: toast.POSITION.TOP_RIGHT,
-  pauseOnHover: true,
-  // transition: MyCustomTransition,
-  // progress: 0.2
-  // and so on ...
-};
 
 const GravityFormsForm = ({ form, formId }: Props) => {
   const { formFields, title, id, databaseId, submitButton, confirmations } =
@@ -66,6 +41,7 @@ const GravityFormsForm = ({ form, formId }: Props) => {
     };
 
   const { state } = useGravityForm();
+  const [messages, setMessages] = useState<string[]>([]);
 
   const [submitGfForm, { data, loading, error }] = useMutation(
     gql`
@@ -87,22 +63,23 @@ const GravityFormsForm = ({ form, formId }: Props) => {
     `,
     {
       onCompleted: (data: any) => {
+        const newMessages = [];
         if (
           data?.submitGfForm?.errors &&
           data?.submitGfForm?.errors.length > 0
         ) {
-          data?.submitGfForm?.errors.forEach((error: FieldError) => {
-            return toast.error(error.message);
+          data.submitGfForm.errors.forEach((error: FieldError) => {
+            newMessages.push(`Error: ${error.message}`);
           });
         }
         if (data?.submitGfForm?.confirmation) {
-          toast.success(
-            removeHtml(data?.submitGfForm?.confirmation?.message),
-            successOptions
+          newMessages.push(
+            `Success: ${data.submitGfForm.confirmation.message}`,
           );
         }
+        setMessages(newMessages);
       },
-    }
+    },
   );
 
   const haveEntryId = Boolean(data?.entry?.entryId);
@@ -116,7 +93,6 @@ const GravityFormsForm = ({ form, formId }: Props) => {
     event.preventDefault();
 
     if (loading) return;
-    // alert(event?.target?.value)
     submitGfForm({
       variables: {
         input: {
@@ -124,21 +100,16 @@ const GravityFormsForm = ({ form, formId }: Props) => {
           fieldValues: state,
         },
       },
-    })
-      .catch((errors: any) => toast(errors, fieldError))
-      .then((data: any) => {
-        console.log("Submitted");
-      });
+    });
   };
 
   function getFieldErrors(id: number): FieldError[] {
     if (!haveFieldErrors) return [];
 
     return data?.submitGfForm?.errors.filter(
-      (error: FieldError) => error?.id === id
+      (error: FieldError) => error?.id === id,
     );
   }
-  console.log(state);
 
   return (
     <>
@@ -173,7 +144,11 @@ const GravityFormsForm = ({ form, formId }: Props) => {
           </Button>
         </div>
       </form>
-      <ToastContainer />
+      {messages.map((message, index) => (
+        <div key={index} className="message text-primary">
+          {message}
+        </div>
+      ))}
     </>
   );
 };

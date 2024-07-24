@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
-import { Page_Flexiblecontent_Blocks_Hero } from "graphql";
+import { FlexibleContentBlocksHeroLayout } from "graphql";
 import { MEDIA_ITEM_FRAGMENT } from "fragments";
 import clsx from "clsx";
 import { FeaturedImage } from "components/FeaturedImage";
 import { Content } from "components/Content";
-interface HeroProps extends Page_Flexiblecontent_Blocks_Hero {
+interface HeroProps extends FlexibleContentBlocksHeroLayout {
   className?: string;
 }
 
@@ -25,12 +25,12 @@ const Hero = ({
     `items-center`,
     image
       ? `container mx-auto flex flex-col md:flex-row`
-      : `container mx-auto flex flex-col`
+      : `container mx-auto flex flex-col`,
   );
 
   let innerItemClass = clsx(
     `flex flex-col gap-4`,
-    image ? `md:w-1/2` : `md:w-full`
+    image ? `md:w-1/2` : `md:w-full`,
   );
 
   return (
@@ -62,7 +62,7 @@ const Title = ({ title, isH1 }: HeroProps) => {
 
 Hero.fragments = {
   entry: gql`
-    fragment HeroFragment on Page_Flexiblecontent_Blocks_Hero {
+    fragment HeroFragment on FlexibleContentBlocksHeroLayout {
       __typename
       title
       isH1
@@ -77,11 +77,16 @@ Hero.fragments = {
         type
       }
       image {
-        ...MediaItemFragment
+        node {
+          ...MediaItemFragment
+        }
       }
       video {
-        mediaItemUrl
-        mimeType
+        node {
+          ...MediaItemFragment
+          mediaItemUrl
+          mimeType
+        }
       }
     }
     ${MEDIA_ITEM_FRAGMENT}

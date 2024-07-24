@@ -2,12 +2,13 @@ import { gql, useQuery } from "@apollo/client";
 import Content from "components/Content/Content";
 import { GravityForm } from "components/GravityForm";
 import { Loading } from "features";
-import { Page_Flexiblecontent_Blocks_Form } from "graphql";
+import { FlexibleContentBlocksFormLayout } from "graphql";
 import { useEffect, useState } from "react";
 import Balancer from "react-wrap-balancer";
 
-interface FormProps extends Page_Flexiblecontent_Blocks_Form {
+interface FormProps extends FlexibleContentBlocksFormLayout {
   className?: string;
+  form?: number;
 }
 
 const Form = ({ className, title, content, form }: FormProps) => {
@@ -56,7 +57,7 @@ const Form = ({ className, title, content, form }: FormProps) => {
 export default Form;
 
 export const FORM_BLOCK_FRAGMENT = gql`
-  fragment FormBlockFragment on Page_Flexiblecontent_Blocks_Form {
+  fragment FormBlockFragment on FlexibleContentBlocksFormLayout {
     title
     content
     form

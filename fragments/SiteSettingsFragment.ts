@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import { MEDIA_ITEM_FRAGMENT } from "./MediaItemFragment";
 
 export const SITE_SETTINGS_FRAGMENT = gql`
-  fragment SiteSettingsFragment on SiteSettings {
+  fragment SiteSettingsFragment on ThemeSettings {
     siteSettings {
       turnOnAnnouncements
       customAddressLabel
@@ -46,13 +46,19 @@ export const SITE_SETTINGS_FRAGMENT = gql`
         url
       }
       logo {
-        ...MediaItemFragment
+        node {
+          ...MediaItemFragment
+        }
       }
       logoAlt {
-        ...MediaItemFragment
+        node {
+          ...MediaItemFragment
+        }
       }
       logoWhite {
-        ...MediaItemFragment
+        node {
+          ...MediaItemFragment
+        }
       }
     }
   }
