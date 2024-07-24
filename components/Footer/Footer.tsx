@@ -1,7 +1,7 @@
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
-import { AcfLink, Acf_GoogleMap, MediaItem, MenuItem } from "graphql";
+import { AcfLink, AcfGoogleMap, MediaItem, MenuItem } from "graphql";
 import Link from "next/link";
 import Logo from "public/logo.svg";
 import { BsInstagram } from "react-icons/bs";
@@ -11,7 +11,7 @@ export interface FooterProps {
   logo: MediaItem;
   menuItems: MenuItem[];
   phoneNumber: AcfLink;
-  address: Acf_GoogleMap;
+  address: AcfGoogleMap;
   email: AcfLink;
   cta: AcfLink;
 }
