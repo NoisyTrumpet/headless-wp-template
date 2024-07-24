@@ -6,32 +6,29 @@ module.exports = withFaust({
   swcMinify: true,
   productionBrowserSourceMaps: true,
   trailingSlash: true,
-  experimental: {
-    swcFileReading: true,
-    // Font Loaders
-    // fontLoaders: [
-    //   {
-    //     loader: "@next/font/local",
-    //     options: {
-    //       display: "swap",
-    //       variable: `--font-family-heading`,
-    //     },
-    //   },
-    // ],
-  },
   eslint: {
     dirs: ["components", "pages", "fragments", "lib", "styles", "utilities"],
   },
   images: {
-    domains: [
-      getWpHostname(),
-      // "cms.puppyfoodbank.org",
-      "localhost",
-      // `puppyfoodbank.org`,
-      // `cms.puppyfoodbank.org`,
-      // `stage.puppyfoodbank.org`,
-      // `puppy-foodbank.vercel.app`,
-      process.env.NEXT_PUBLIC_WORDPRESS_URL,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: getWpHostname(),
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_WORDPRESS_URL,
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   // SVGR
