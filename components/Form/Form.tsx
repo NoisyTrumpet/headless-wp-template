@@ -8,7 +8,7 @@ import Balancer from "react-wrap-balancer";
 
 interface FormProps extends FlexibleContentBlocksFormLayout {
   className?: string;
-  form: number;
+  form?: number;
 }
 
 const Form = ({ className, title, content, form }: FormProps) => {
